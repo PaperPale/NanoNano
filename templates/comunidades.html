@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="widspan=device-widspan, initial-scale=1.0">
+
+<title>{{client.nickname}}</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/crono.css') }}" media="screen"/>
+
+
+</head>
+<body class="profile-home" id="profile-home">
+{% include "nav.html" %}
+<div class="space"></div>
+<div class="headnav"><h3>Minhas Comunidades</h3></div>
+   <dl id="comunidade-cat">
+    {% for i in subs %}
+    <div id="comunidade-uni">
+      <img class="img-com" src="{{i[1]}}">
+        
+        <div id="comunidade-text">
+         <label id="name">{{i[0]}}</label>
+         <label id="users">Membros: {{i[3]}}</label>
+         <label id="lang">Idioma: {{i[6]}}</label>
+         <label id="createt">Criado: {{i[5][0:10]}}</label>
+         <label id="link"><a id="link-a" href="c?comId={{i[2]}}" >Entrar nessa comunidade</a></label>
+        </div>
+    </div>
+    {%endfor%}
+   </dl>
+</body>
+</html>

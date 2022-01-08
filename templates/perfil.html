@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="widspan=device-widspan, initial-scale=1.0">
+
+<title>{{client.nickname}}</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/crono.css') }}" media="screen"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+
+</head>
+<body class="profile-home" id="profile-home">
+
+{% include "nav.html" %}
+<div class="space"></div>
+<div class="profile">
+
+<div id="profile-icon-name">
+<img class="usericon" src="{{client.icon}}" data-toggle="modal" data-target="#myDi">
+<br>
+<p class="username">{{client.nickname}}</p>
+</div>
+
+
+<div class="follow-div">
+    <div>
+		<p class="n">{{client.followersCount}}</p>
+		<span>Seguidores</span>
+		</div>
+		
+	<div>
+		<p class="n">{{client.followingCount}}</p>
+		<span>Seguindo</span>
+		</div>
+</div>
+</div>
+<div class="description-profile">
+<text>{{client.content[0:500]}}...</text>
+</div>
+{% include "dialog_info_user.html" %}
+{% include "dialog_nano_menu.html" %}
+
+<hr noshade="noshade"/>
+   <dl id="comunidade-cat">
+    <!---{% for i in subs %}
+    <div id="comunidade-uni">
+      <img src="{{i[1]}}">
+        
+        <div id="comunidade-text">
+         <label id="name">{{i[0]}}</label>
+         <label id="users">Membros: {{i[3]}}</label>
+         <label id="lang">Idioma: {{i[6]}}</label>
+         <label id="createt">Criado: {{i[5][0:10]}}</label>
+         <label id="link"><a id="link-a" href="user/comunidade/{{i[2]}}" >Entrar nessa comunidade</a></label>
+        </div>
+    </div>
+    {%endfor%}
+    --->
+   </dl>
+
+
+</body>
+</html>

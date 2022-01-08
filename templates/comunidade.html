@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title></title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/crono.css') }}" media="screen"/>
+
+</head>
+<body>
+{% include "navComu.html" %}
+<div class="joinedhead">
+<div class="icon-joined">
+<img src="{{joinedData['icon']}}">
+</div>
+<div class="info-joined">
+<h3 id="title-joined">{{joinedData['name']}}</h3>
+<label id="users-joined-count">{{joinedData['usersCount']}} membros</label><br>
+<label id="language-joined">{{joinedData['primaryLanguage']}}</label><br>
+<label id="aminoid-joined">AminoId: {{joinedData['aminoId']}}</label><br>
+<label id="comid-joined">Comunidade Id: {{joinedData['comId']}}</label>
+</div>
+</div>
+
+
+{% for chat in chats %}
+<div class="scroll-joined-chat">
+
+{% for uni in chat %}
+<div class="unidade-joined-chat" style="background: url({{uni[1]}}) center/ cover no-repeat !important;">
+<img class="icon-joined-chat"  src="{{uni[2]}}">
+<label>{{uni[0][0:18]}}</label>
+<div class="statusOn-joined">•</div>
+</div>
+{%endfor%}
+
+</div>
+{%endfor%}
+</body>
+</html>

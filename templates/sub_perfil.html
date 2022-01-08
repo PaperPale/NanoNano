@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{sub.nickname}}</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/crono.css') }}" media="screen"/>
+<script type="text/javascript">
+
+function opend(id){
+document.getElementById(id).showModal()
+}
+function closedd(id){
+document.getElementById(id).close()
+}
+
+</script>
+
+</head>
+<body class="profile-home" id="profile-home">
+
+{% include "navSubProfile.html" %}
+
+{%if sub.json['mediaList']!=None%}
+<div class="profile" style="background: url({{sub.json['mediaList'][0][1]}});">
+{%else%}
+<div class="profile" style="background: #333;">
+{%endif%}
+
+
+<div id="profile-icon-name">
+<img class="usericon" src="{{sub.icon}}"> 
+<div class="level-profile{{sub.level}}"></div>
+<p class="username">{{sub.nickname[0:19]}}</p> 
+</div>
+
+
+<!--Titulos-->
+{% if sub.customTitles %}
+<div id="titles">
+{% for i in sub.customTitles%}
+
+{% if i['color']==None%}
+<button id="tag-line" onclick="" style="background:#000000; --label-r:00; --label-g:0p;  --label-b:00; --lightness-threshold:0.453; --perceived-lightness:calc(((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255); --lightness-switch:max(0, min(calc((var(--perceived-lightness) - var(--lightness-threshold)) * -1000), 1)); color:hsl(0, 0%, calc(var(--lightness-switch) * 100%));">{{i['title']}}</button>
+{%else%}
+<button id="tag-line" onclick="" style="background:{{i['color']}}; --label-r:{{i['color'][0:2]}}; --label-g:{{i['color'][3:5]}};  --label-b:{{i['color'][5:6]}}; --lightness-threshold:0.453; --perceived-lightness:calc(((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255); --lightness-switch:max(0, min(calc((var(--perceived-lightness) - var(--lightness-threshold)) * -1000), 1)); color:hsl(0, 0%, calc(var(--lightness-switch) * 100%));">{{i['title']}}</button>
+{%endif%}
+
+
+{%endfor%}
+</div>
+{%endif%}
+
+
+<div class="follow-div">
+    <div>
+		<p class="n">{{sub.reputation}}</p>
+		<span>Reputação</span>
+		</div>
+		
+	<div>
+		<p class="n">{{sub.followingCount}}</p>
+		<span>Seguindo</span>
+		</div>
+		
+	<div>
+	    <p class="n">{{sub.followersCount}}</p>
+		<span>Seguidores</span>
+		</div>
+</div>
+
+
+</div>
+<!--Descrição-->
+<div class="description-profile">
+{% if sub.content%}
+   <text>{{sub.content[0:700]}}...</text>
+
+{%endif%}
+</div>
+
+
+{% include "dialog_info_subuser.html" %}
+
+<hr noshade="noshade"/>
+   <dl id="comunidade-my-subBlogs">
+   <li>Em Desenvolvimento!</li>
+   <li>Under development!</li>
+   <li>В разработке!</li>
+
+   </dl>
+
+
+</body>
+</html>

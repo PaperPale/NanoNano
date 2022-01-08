@@ -1,0 +1,30 @@
+<script type="text/javascript">
+function copy(id){
+
+let object = document.getElementById(id);
+object.select();
+object.setSelectionRange(0,9999);
+document.execCommand("copy");
+};
+</script>
+<dialog id="myDi" class="modal fade">
+          <div class="dh">
+            <h1> Info. Sobre {{client.nickname}}</h1>
+          </div>
+          
+          <div class="dc">
+          <p>Toque pra copiar!</p>
+           <br>
+           <label id="userid">userId:</label><input id="userIdtext" onclick="copy('userIdtext')" type="text" value="{{client.userId}}" readonly/>
+           <br>
+           <label id="aminoid">aminoId:</label><input id="aminoIdtext" onclick="copy('aminoIdtext')" type="text" value="{{client.aminoId}}" readonly/>
+           <br>
+           <label id="sid">sid:</label><textarea id="sidText" onclick="copy('sidText')" rows="3" readonly>{{sid}}</textarea>
+            
+          </div>
+          <div class="dmenu">
+          <br>
+          <button id="btnOk" type="button" data-dismiss="modal">Fechar</button>
+            
+</div>
+</dialog>

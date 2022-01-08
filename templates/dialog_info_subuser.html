@@ -1,0 +1,136 @@
+<script type="text/javascript">
+document.getElementById("taginputcolor").addEventListener("change",function(){
+
+document.getElementById("rgba").value = document.getElementById("taginputcolor").value;
+
+});
+                
+function muda(e){
+                let cor = document.getElementById("taginputcolor").value;
+                r = cor.slice(1, 2)
+                g = cor.slice(3, 4)
+                b = cor.slice(5, 6)
+                
+                
+                document.getElementById("color"+e.id).value = cor;
+                document.getElementById(e.id).style = "background:"+cor+"; --label-r:"+r+"; --label-g:"+g+";  --label-b:"+b+"; --lightness-threshold:0.453; --perceived-lightness:calc(((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255); --lightness-switch:max(0, min(calc((var(--perceived-lightness) - var(--lightness-threshold)) * -1000), 1)); color:hsl(0, 0%, calc(var(--lightness-switch) * 100%));";
+                
+};
+
+function Processar(){
+var DataJsonTextarea = document.getElementById("DataJsonTextarea").value;
+var lenTitles = Number(document.getElementById("lenTitles").value);
+listColor = []
+listSelf = []
+for (var i = 0; i < lenTitles; i++) {
+cor = document.getElementById("colortitleTag"+i).value;
+r = cor.slice(1, 2)
+g = cor.slice(3, 4)
+b = cor.slice(5, 6)
+listColor.push(cor);
+document.getElementById("tagDisplay"+i).style = "background:"+cor+"; --label-r:"+r+"; --label-g:"+g+";  --label-b:"+b+"; --lightness-threshold:0.453; --perceived-lightness:calc(((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255); --lightness-switch:max(0, min(calc((var(--perceived-lightness) - var(--lightness-threshold)) * -1000), 1)); color:hsl(0, 0%, calc(var(--lightness-switch) * 100%));";                                                
+                
+ };
+document.getElementById("DataJsonTextarea").value = listColor;
+};
+                
+                
+</script>
+<dialog id="EditDialog">
+          <div class="dh">
+            <h4>Nanoapp | Edit.</h4>
+          </div>
+          <div class="bodyNanoapp">
+             <form action="#" method="post">
+             <div id="icon-profile-edit">
+                 <img src="{{sub.icon}}">
+             </div>
+             <div id="inputs-nano">
+                <input type="text" name="name" id="sub-input-name" value="{{sub.nickname}}"><br>
+             </div>
+             <br>
+                <textarea rows="5" name="content" id="sub-content-input">
+                     {{sub.content}}
+                </textarea><br>
+                
+                
+                <div id="TagsList">
+                {% if sub.customTitles!=None %}
+                {% for i in sub.customTitles%}
+                
+                {% if i['color']==None%}
+                <label id="tagDisplay{{loop.index0}}" style="background:#000000; --label-r:00; --label-g:00;  --label-b:00; --lightness-threshold:0.453; --perceived-lightness:calc(((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255); --lightness-switch:max(0, min(calc((var(--perceived-lightness) - var(--lightness-threshold)) * -1000), 1)); color:hsl(0, 0%, calc(var(--lightness-switch) * 100%));">{{i['title']}}</label>
+                {%else%}
+                <label id="tagDisplay{{loop.index0}}" style="background:{{i['color']}}; --label-r:{{i['color'][1:2]}}; --label-g:{{i['color'][3:4]}};  --label-b:{{i['color'][5:6]}}; --lightness-threshold:0.453; --perceived-lightness:calc(((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255); --lightness-switch:max(0, min(calc((var(--perceived-lightness) - var(--lightness-threshold)) * -1000), 1)); color:hsl(0, 0%, calc(var(--lightness-switch) * 100%));">{{i['title']}}</label>
+                {%endif%}
+                
+                <!--<input id="tagcolor" type="color" value="#000000">-->
+                {%endfor%}
+                <span onclick="opend('EditTagsDialog');"> 🖌️</span>
+                <textarea name="titlesjson" id="DataJsonTextarea">
+                
+                {% for i in sub.customTitles%}
+                
+                   {% if loop.index0==lenTitles-1%}
+                      {{i["color"]}}
+                   {%else%}
+                      {{i["color"]}},
+                   {%endif%} 
+                
+                {%endfor%}
+                
+                
+                </textarea>
+                {%endif%}
+                </div>
+                
+                <div id="button-sub-submit">
+                     <input type="submit" id="submit-nano" value="Editar">
+                </div>
+             </form>
+             <div id="note-sub-edit"></div>
+          
+          </div>
+          
+          <div class="nano-menu">
+                 <br>
+                 <button id="btnOk" type="button"  onclick="closedd('EditDialog')">Fechar</button>
+            
+          </div>
+</dialog>
+
+
+<dialog id="EditTagsDialog">
+<div class="dh">
+            <h4> Edit tags | {{sub.nickname}}</h4>
+</div>
+
+
+{%if sub.customTitles %}
+<div id="TagsList">
+               
+               {% for i in sub.customTitles%}
+               
+               
+               {% if i['color']==None%}
+               <label id="titleTag{{loop.index0}}" onclick="muda(this);" style="background:#000000; --label-r:00; --label-g:00;  --label-b:00; --lightness-threshold:0.453; --perceived-lightness:calc(((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255); --lightness-switch:max(0, min(calc((var(--perceived-lightness) - var(--lightness-threshold)) * -1000), 1)); color:hsl(0, 0%, calc(var(--lightness-switch) * 100%));">{{i['title']}}</label>
+               <input id="colortitleTag{{loop.index0}}" type="hidden" value="#000000">
+               {%else%}
+               <label id="titleTag{{loop.index0}}" onclick="muda(this);" style="background:{{i['color']}}; --label-r:{{i['color'][1:2]}}; --label-g:{{i['color'][3:4]}};  --label-b:{{i['color'][5:6]}}; --lightness-threshold:0.453; --perceived-lightness:calc(((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255); --lightness-switch:max(0, min(calc((var(--perceived-lightness) - var(--lightness-threshold)) * -1000), 1)); color:hsl(0, 0%, calc(var(--lightness-switch) * 100%));">{{i['title']}}</label>
+               <input id="colortitleTag{{loop.index0}}" type="hidden" value="{{i['color']}}">
+               {%endif%}
+               
+               <!--<input id="tagcolor" type="color" value="#000000">-->
+               {%endfor%}
+               <input type="hidden" id="lenTitles" value="{{lenTitles}}">
+               </div>
+               <div id="rgba">
+                  <input type="text" id="rgba" value="#000000">
+                  
+                  <input id="taginputcolor" type="color" value="#000000">
+               
+               </div>
+               {%endif%}
+               
+               <button id="submit-nano" onclick="closedd('EditTagsDialog'); Processar();">Salvar</button>
+</dialog>           
