@@ -1,41 +1,19 @@
 from flask import Flask, render_template, request, flash, url_for, redirect, session
 from datetime import timedelta
-from flask_sqlalchemy import SQLAlchemy
+
 
 import time
 import os
 import amino
 import json
 
-
-data_ini = "2021-06-26 17:43:30"
-format = '%Y-%m-%d %H:%M:%S'
-
 TEMPLATE_DIR = os.path.abspath('templates')
 STATIC_DIR = os.path.abspath('static')
 
 app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
 app.secret_key = "Papel"
-app.permanent_session_lifetime = timedelta(minutes=900)
+app.permanent_session_lifetime = timedelta(minutes=90)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
-
-db = SQLAlchemy(app)
-
-class users(db.Model):
-   userId = db.Column("userId", db.Integer, primary_key=True)
-   email = db.Column(db.String(42))
-   password = db.Column(db.String(42))
-   name = db.Column(db.String(42))
-   level = db.Column(db.Integer)
-   
-   
-   def __init__(self, userId, email, password, name, level):
-   
-      self.userId = userId
-      self.email = email
-      self.password = password
-      self.name = name 
-      self.level = level
 
 
 client = None
@@ -50,30 +28,38 @@ def test():
 @app.route("/", methods=["POST", "GET"])
 def login():
    global client
-   
-   client = amino.Client()
-   if request.method == "POST":
-     session.permanent = True
-     eform = request.form["email"]
-     pform = request.form["password"]
-     session["email"] = eform
-     session["password"] = pform
-     loginAmino = client.login(eform, pform)
-     session["Auth"] = loginAmino
-     
-     #login sucesso
-     if session["Auth"]==200:
-       return redirect(url_for("user"))
-   
-   #primeira vez verificando
-   elif "Auth" in session:
-     if session["Auth"]==200:
-        return redirect(url_for("user"))
-     else:
-        return render_template("login.html", erro="Erro de Autenticação ao Logar")
-   else:
-     return render_template("login.html", erro="")
-     
+   try:
+                  client = amino.Client(amino.Client().devicee())
+                  if request.method == "POST":
+                          session.permanent = True
+                          eform = request.form["email"]
+                          pform = request.form["password"]
+                          session["email"] = eform
+                          session["password"] = pform
+                          loginAmino = client.login(eform, pform)
+                          session["Auth"] = loginAmino
+
+                          #login sucesso
+                          if session["Auth"]==200:
+                                     return redirect(url_for("user"))
+
+                  #primeira vez verificando
+                  elif "Auth" in session:
+                          if session["Auth"]==200:
+                                 return redirect(url_for("user"))
+                          else:
+                                 return render_template("login.html")
+                  else:
+                    return render_template("login.html")
+      
+      
+     except (TypeError, OSError, ValueError) as e:
+           return render_template("erroSection.html", amino=False, mensagem=e)
+     except Exception as e:
+           return render_template("erroSection.html", amino=True, mensagem=e)
+     except:
+           return render_template("erroSection.html", amino=False, mensagem="Erro Desconhecido!")
+      
 @app.route("/logout")
 def logout():
    global client, sub, comId
@@ -170,7 +156,7 @@ def catalog():
      try:
         if client==None:
   #if client None
-                client = amino.Client()
+                client = amino.Client(amino.Client().devicee())
                 if client.login(usersession[0], usersession[1])==200:
                       return redirect(url_for("catalog"))
                 
@@ -352,5 +338,5 @@ def user():
      
 
 if __name__ == '__main__':
-    db.create.all()
+
     app.run(debug=True)
