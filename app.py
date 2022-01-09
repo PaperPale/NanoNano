@@ -41,6 +41,12 @@ class users(db.Model):
 client = None
 sub = None
 comId = None
+
+@app.route("/test", methods=["POST", "GET"])
+def test():  
+   return render_template("index.html")
+
+
 @app.route("/", methods=["POST", "GET"])
 def login():
    global client
