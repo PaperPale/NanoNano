@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, flash, url_for, redirect, session
 from datetime import timedelta
 
-
 import time
 import os
 import amino
@@ -19,10 +18,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 client = None
 sub = None
 comId = None
-
-@app.route("/test", methods=["POST", "GET"])
-def test():  
-   return render_template("index.html")
 
 
 @app.route("/", methods=["POST", "GET"])
