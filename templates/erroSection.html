@@ -13,9 +13,15 @@
   
 <section id="section">
 
-<h1 id="aspa">“</h1>
-<h1 id="me">{{mensagem}}</h1>
+{%if amino==True%}
+    <h1 id="aspa">Amino:</h1>
+    <h1 id="me">{{mensagem}}</h1>
   
+{%else%}
+    <h1 id="aspa">“</h1>
+    <h1 id="me">{{mensagem}}</h1>
+  
+{%endif%}
 <a href="/logout" id="login-btn">Voltar ao Log-in</a>
   
 </section>
