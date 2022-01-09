@@ -22,6 +22,8 @@ comId = None
 @app.route("/", methods=["POST", "GET"])
 def login():
    global client
+   
+   
    try:
                   client = amino.Client(amino.Client().devicee())
                   if request.method == "POST":
@@ -47,11 +49,11 @@ def login():
                     return render_template("login.html")
       
       
-     except (TypeError, OSError, ValueError) as e:
+   except (TypeError, OSError, ValueError) as e:
            return render_template("erroSection.html", amino=False, mensagem=e)
-     except Exception as e:
+   except Exception as e:
            return render_template("erroSection.html", amino=True, mensagem=e)
-     except:
+   except:
            return render_template("erroSection.html", amino=False, mensagem="Erro Desconhecido!")
       
 @app.route("/logout")
