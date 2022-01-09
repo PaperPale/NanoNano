@@ -12,7 +12,6 @@ STATIC_DIR = os.path.abspath('static')
 app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
 app.secret_key = "Papel"
 app.permanent_session_lifetime = timedelta(minutes=90)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 
 
 client = None
