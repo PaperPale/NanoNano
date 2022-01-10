@@ -25,7 +25,7 @@ def login():
    
    
    try:
-                  client = amino.Client(amino.Client().devicee())
+                  client = amino.Client()
                   if request.method == "POST":
                           session.permanent = True
                           eform = request.form["email"]
@@ -152,7 +152,7 @@ def catalog():
      try:
         if client==None:
   #if client None
-                client = amino.Client(amino.Client().devicee())
+                client = amino.Client()
                 if client.login(usersession[0], usersession[1])==200:
                       return redirect(url_for("catalog"))
                 
