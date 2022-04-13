@@ -19,7 +19,6 @@ app.permanent_session_lifetime = timedelta(minutes=90)
 @app.route("/", methods=["POST", "GET"])
 def index():
    
-   try:
                   if request.method == "POST":
                           session.permanent = True
                           session["nome"] = request.form["nome"]
@@ -33,14 +32,6 @@ def index():
                   else:
                           return render_template("index.html", formul=False, nome="Meu Caro")
                     
-      
-      
-   except (TypeError, OSError, ValueError) as e:
-           return render_template("erroSection.html", mensagem=e)
-   except Exception as e:
-           return render_template("erroSection.html", mensagem=e)
-   except:
-           return render_template("erroSection.html", mensagem="Erro Desconhecido!")
       
       
       
