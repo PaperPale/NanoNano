@@ -48,7 +48,7 @@ def index():
 def clear():
     session["nome"] = None
     print("limpador!")
-    return redirect(url_for("/"), formul=False)
+    return redirect(url_for("/", formul=False))
  
 
 
