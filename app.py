@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, url_for, redirect, ses
 from datetime import timedelta
 
 import time
-import os de
+import os
 import json
 
 TEMPLATE_DIR = os.path.abspath('templates')
