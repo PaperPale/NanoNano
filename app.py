@@ -28,7 +28,7 @@ def index():
 
                   #primeira vez verificando
                   elif "nome" in session:
-                          if session["nome"] == None
+                          if session["nome"] == None:
                                return render_template("index.html", formul=False, nome=session["nome"])
                           else:
                                return render_template("index.html", formul=True, nome=session["nome"])
