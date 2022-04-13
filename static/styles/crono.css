@@ -7,7 +7,7 @@ box-sizing: border-box;
 #det{
 justify-content:center;
 display:flex;
-width:70%;
+width:90%;
 margin:4%;
 font-size:50%;
 text-shadow:#222 0px 0px 20px;
@@ -16,13 +16,17 @@ font-family: "Lucida Console", "Courier New", monospace;
 #det p{
 justify-content: center;
 display:flex;
-width:70%;
+width:110%;
 margin:4%;
 font-size:70%
 text-shadow:#222 0px 0px 20px;
 font-family: "Lucida Console", "Courier New", monospace;
 }
-
+#det a{
+text-decoration:nome;
+color: #999;
+outline:0;
+}
 
 #post{
 justify-content: left;
