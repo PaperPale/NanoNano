@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Paper</title>
+
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/crono.css') }}" media="screen"/>
+<script type="text/javascript">
+
+function opend(id){
+document.getElementById(id).showModal()
+}
+function closedd(id){
+document.getElementById(id).close()
+}
+
+</script>
+
+<!---
+<href="{{ url_for('static',filename='styles/crono.css') }}" media="screen"/>-->
+
+</head>
+<body class="body">
+
+{% if formul==False %}
+<dialog id="formstartdialog" open>
+<form action="#" method="post" id="formstart">
+<div id="nome"><label>Qual seu nome?</label>
+<input type="text" name="nome" id="nomenome" placeholder="clique!" maxlength="10" />
+</div>
+</form>
+
+</dialog>
+{%endif%}
+
+
+<div post="post">
+
+{{nome}}, Você sabia que ele assediou algumas garotas na escola onde trabalha como professor.
+algumas já denunciaram, mas aparentemente a escola não tomou nenhuma iniciativa a respeito... em prol disso nós decidimos expor o assediador como forma de apelo.
+
+</div>
+
+
+
+<div class="bodydivdado">
+
+
+<div class="nome"><h2>CLEDSON IRAN DA MATA</h2></div>
+<div class="cpf"><span>CPF: 82531838600</span></div>
+<div class="sexo"><span>SEXO: MASCULINO</span></div>
+<div class="nascimento"><span>NASCIMENTO: 04/02/1970</span></div>
+<div class="emails"><span>
+EMAILS: irandamata@terra.com.br <br>
+irandamata@yahoo.com.br</span></div>
+<div class="telefones"><span>
+CELULAR: (61)999922828, (61)999922929 <br><br>
+RESIDENCIAL: (61)32542829, (61)33363569</span></div>
+<br>
+ 
+<div class="endereco"><span>
+ENDEREÇOS: 
+<br><br>
+Q  QNF 9,  - C 36 - TAGUATINGA NORTE, BRASILIA/DF - 72125590
+<br><br>
+MOD  U, BL A - AP 122 - ESTANCIA MESTRE D'ARMAS I, BRASILIA/DF - 73401140
+<br><br>
+Q  QNF 9, LT 36 -  - TAGUATINGA NORTE, TAGUATINGA/TO - 77320000
+<br><br>
+Q  QNF 9,  - Q 9 - TAGUATINGA NORTE, BRASILIA/DF - 72125590
+<br><br>
+Q  QNF 9,  - C 11 831 - TAGUATINGA NORTE, BRASILIA/DF - 72125590
+<br>
+
+
+
+
+</span></div>
+
+</div>
+</body>
+</html>
