@@ -37,13 +37,7 @@ def index():
       
 
 
-  #for para salvar sessions e dado
-
-
-@app.route("/assediador")
-def user():
-   print()
-  
+  #for para salvar sessions e dado  
           
      
 @app.route("/clear")
