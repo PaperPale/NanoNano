@@ -4,6 +4,16 @@
 box-sizing: border-box;
 
 }
+#post{
+justify-content: left;
+display:flex;
+width:70%;
+margin:4%;
+text-shadow:#222 0px 0px 20px;
+font-family: "Lucida Console", "Courier New", monospace;
+}
+
+
 
 .bodydivdado div{
 justify-content: left;
