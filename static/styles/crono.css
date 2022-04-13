@@ -14,13 +14,15 @@ font-family: "Lucida Console", "Courier New", monospace;
 #det p{
 justify-content: center;
 display:flex;
-width:100%;
+width:auto;
 margin:4%;
 font-size:110%
 text-shadow:#222 0px 0px 20px;
 font-family: "Lucida Console", "Courier New", monospace;
 }
 #det a{
+justify-content: center;
+display:flex;
 text-decoration:none;
 color: #999;
 outline:0;
