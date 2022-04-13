@@ -22,16 +22,14 @@ def index():
    try:
                   if request.method == "POST":
                           session.permanent = True
-                          fnome = request.form["nome"]
-                          fsexo = request.form["sexo"]
-                          session["fnome"] = fnome
-                          session["fsexo"] = fsexo
+                          session["nome"] = request.form["nome"]
+                          
 
                           return redirect(url_for("/"))
 
                   #primeira vez verificando
-                  elif session["fnome"] and session["fsexo"]:
-                          return render_template("index.html", formul=True, nome=session["fnome"])
+                  elif session["nome"]:
+                          return render_template("index.html", formul=True, nome=session["nome"])
                   else:
                           return render_template("index.html", formul=False, nome="Meu Caro")
                     
@@ -57,9 +55,11 @@ def user():
   
           
      
-@app.route("/logout")
+@app.route("/clear")
 def logout():
-    print()
+    session["nome"] = None
+    print("limpador!")
+
 
 
      
