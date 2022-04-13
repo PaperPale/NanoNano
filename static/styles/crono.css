@@ -57,7 +57,7 @@ justify-content: center;
 display:flex;
 width:70%;
 z-index:1000;
-position:absolute;
+position:fixes;
 font-family: 'Poppins', sans-serif;
 background:#333;
 width:100%;
