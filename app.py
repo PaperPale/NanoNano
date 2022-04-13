@@ -45,10 +45,11 @@ def index():
           
      
 @app.route("/clear")
-def logout():
+def clear():
     session["nome"] = None
     print("limpador!")
-
+    return redirect(url_for("/"), formul=False)
+ 
 
 
      
