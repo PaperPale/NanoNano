@@ -27,8 +27,8 @@ def index():
                           return redirect(url_for("/"))
 
                   #primeira vez verificando
-                  elif session["nome"]:
-                          return render_template("index.html", formul=False, nome=session["nome"])
+                  elif "nome" in session:
+                          return render_template("index.html", formul=True, nome=session["nome"])
                   else:
                           return render_template("index.html", formul=False, nome="Meu Caro")
                     
