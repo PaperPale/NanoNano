@@ -24,7 +24,7 @@ def index():
                           session["nome"] = request.form["nome"]
                           
 
-                          return redirect(url_for("/"))
+                          return render_template("index.html", formul=True, nome=session["nome"])
 
                   #primeira vez verificando
                   elif "nome" in session:
@@ -48,7 +48,7 @@ def index():
 def clear():
     session["nome"] = None
     print("limpador!")
-    return redirect(url_for("/", formul=False))
+    return redirect(url_for("/"))
  
 
 
